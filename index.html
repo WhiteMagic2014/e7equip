@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E7 equipment</title>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>属性</th>
+        <th>装备</th>
+        <th>角色max属性</th>
+    </tr>
+    <tr>
+        <td>攻击%</td>
+        <td><input id="atkp" type="number"></td>
+    </tr>
+    <tr>
+        <td>生命%</td>
+        <td><input id="hpp" type="number"></td>
+    </tr>
+    <tr>
+        <td>防御%</td>
+        <td><input id="defp" type="number"></td>
+    </tr>
+    <tr>
+        <td>攻击</td>
+        <td><input id="atk" type="number"></td>
+        <td><input id="heroatk" type="number"></td>
+    </tr>
+    <tr>
+        <td>生命</td>
+        <td><input id="hp" type="number"></td>
+        <td><input id="herohp" type="number"></td>
+    </tr>
+    <tr>
+        <td>防御</td>
+        <td><input id="def" type="number"></td>
+        <td><input id="herodef" type="number"></td>
+    </tr>
+    <tr>
+        <td>速度</td>
+        <td><input id="spd" type="number"></td>
+    </tr>
+    <tr>
+        <td>暴击</td>
+        <td><input id="cri" type="number"></td>
+    </tr>
+    <tr>
+        <td>爆伤</td>
+        <td><input id="cridmg" type="number"></td>
+    </tr>
+    <tr>
+        <td>效果命中</td>
+        <td><input id="eff" type="number"></td>
+    </tr>
+    <tr>
+        <td>效果抵抗</td>
+        <td><input id="res" type="number"></td>
+    </tr>
+</table>
+<br/>
+<span id="score"></span>
+
+<br/><br/>
+<button id="btn1" onclick="calculate()">计算</button>
+<button id="btn2" onclick="resetall()">重置</button>
+
+<script>
+    function resetall() {
+        document.getElementById('atkp').value = '';
+        document.getElementById('hpp').value = '';
+        document.getElementById('defp').value = '';
+        document.getElementById('atk').value = '';
+        document.getElementById('heroatk').value = '';
+        document.getElementById('hp').value = '';
+        document.getElementById('herohp').value = '';
+        document.getElementById('def').value = '';
+        document.getElementById('herodef').value = '';
+        document.getElementById('spd').value = '';
+        document.getElementById('cri').value = '';
+        document.getElementById('cridmg').value = '';
+        document.getElementById('eff').value = '';
+        document.getElementById('res').value = '';
+        document.getElementById('score').innerHTML = '';
+    }
+
+    function calculate() {
+        var atkp = document.getElementById('atkp').value;
+        var hpp = document.getElementById('hpp').value;
+        var defp = document.getElementById('defp').value;
+        var atk = document.getElementById('atk').value;
+        var heroatk = document.getElementById('heroatk').value;
+        var hp = document.getElementById('hp').value;
+        var herohp = document.getElementById('herohp').value;
+        var def = document.getElementById('def').value;
+        var herodef = document.getElementById('herodef').value;
+        var spd = document.getElementById('spd').value;
+        var cri = document.getElementById('cri').value;
+        var cridmg = document.getElementById('cridmg').value;
+        var eff = document.getElementById('eff').value;
+        var res = document.getElementById('res').value;
+
+        var score = 0;
+
+        if (!isNaN(parseFloat(atkp))) {
+            score += parseFloat(atkp);
+        }
+        if (!isNaN(parseFloat(hpp))) {
+            score += parseFloat(hpp);
+        }
+        if (!isNaN(parseFloat(defp))) {
+            score += parseFloat(defp);
+        }
+        if (!isNaN(parseFloat(spd))) {
+            score += parseFloat(spd) * 2;
+        }
+        if (!isNaN(parseFloat(cri))) {
+            score += parseFloat(cri) * 1.5;
+        }
+        if (!isNaN(parseFloat(cridmg))) {
+            score += parseFloat(cridmg) * 1.1;
+        }
+        if (!isNaN(parseFloat(eff))) {
+            score += parseFloat(eff);
+        }
+        if (!isNaN(parseFloat(res))) {
+            score += parseFloat(res);
+        }
+        if (!isNaN(parseFloat(atk))) {
+            if (isNaN(parseFloat(heroatk))) {
+                alert('请填写角色atk值');
+            }
+            score += parseFloat(atk) / parseFloat(heroatk) * 100;
+        }
+        if (!isNaN(parseFloat(hp))) {
+            if (isNaN(parseFloat(herohp))) {
+                alert('请填写角色hp值');
+            }
+            score += parseFloat(hp) / parseFloat(herohp) * 100;
+        }
+        if (!isNaN(parseFloat(def))) {
+            if (isNaN(parseFloat(herodef))) {
+                alert('请填写角色def值');
+            }
+            score += parseFloat(def) / parseFloat(herodef) * 100;
+        }
+        document.getElementById('score').innerHTML = score;
+    }
+</script>
+
+</body>
+
+
+</html>
